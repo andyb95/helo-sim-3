@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 
 export default class Auth extends Component {
 
@@ -13,6 +14,30 @@ export default class Auth extends Component {
   changeHandler = (e) => {
     this.setState({
       [e.target.name]: e.target.value
+    })
+  }
+
+  registerUser = (e) => {
+    e.preventDefault()
+    const {username, password} = this.state
+    axios.post('/auth/register', {username, password})
+    .then( res => {
+      this.props.history.push('/dashboard')
+    })
+    .catch(err => {
+      alert('Could not register')
+    })
+  }
+
+  loginUser = (e) => {
+    e.preventDefault()
+    const {username, password} = this.state
+    axios.post('/auth/login', {username, password})
+    .then( res => {
+      this.props.history.push('/dashboard')
+    })
+    .catch(err => {
+      alert('Could not log in')
     })
   }
 
@@ -36,8 +61,8 @@ export default class Auth extends Component {
           onChange={e => this.changeHandler(e)}
         />
 
-        <button >Login</button>
-        <button >Register</button>
+        <button onClick ={(e) => this.loginUser(e)}>Login</button>
+        <button onClick ={(e) => this.registerUser(e)} >Register</button>
       </div>
     )
   }
