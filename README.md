@@ -164,8 +164,8 @@ Your users can now register and login, but your front end immediately forgets wh
    * Write the `mapStateToProps` function at the bottom of the file.
    * Take the username and profile picture off of the Redux state.
    * Now invoke `connect`, passing in `mapStateToProps`. Immediately invoke it again passing in the name of the component.
-* Now if you `console.log` props inside the Nav component you should see the values coming from the Redux state. 
-* Set up the user profile picture and username to display. This will be pretty boring looking until we update these values in the next step
+<!-- * Now if you `console.log` props inside the Nav component you should see the values coming from the Redux state. 
+* Set up the user profile picture and username to display. This will be pretty boring looking until we update these values in the next step -->
 
 ## Step 4 
 Finally you will setup your Auth component to update Redux state.
