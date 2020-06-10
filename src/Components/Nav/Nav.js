@@ -5,10 +5,14 @@ import {connect} from 'react-redux'
 class Nav extends Component {
 
   render(){
-    const {username, profilePicUrl} = this.props
+    const {username, profilepic} = this.props
+    
     return(
       <div>Nav.js
-        <img src = {profilePicUrl} />
+        <img 
+        src = {profilepic} 
+        alt = "profile pic"
+        />
         <p>{username}</p>
         <Link to='/dashboard'>Home</Link>
         <Link to='/new'>New Post</Link>
@@ -19,8 +23,8 @@ class Nav extends Component {
 }
 
 const mapStateToProps = reduxState => {
-  const {username, profilePicUrl} = reduxState 
-  return {username, profilePicUrl}
+  const {username, profilepic} = reduxState 
+  return {username, profilepic}
  }
 
 export default connect(mapStateToProps)(Nav)

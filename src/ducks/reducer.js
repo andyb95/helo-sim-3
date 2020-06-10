@@ -1,24 +1,23 @@
-import axios from 'axios'
 
 const initialState = {
   username: '',
   id: '',
-  profilePicUrl: ''
+  profilepic: ''
 }
 
 const LOGIN_USER = 'LOGIN_USER'
 
-export function loginUser(username, id, profilePicUrl){
+export function loginUser(username, id, profilepic){
   return {
     type: LOGIN_USER,
-    payload: {username, id, profilePicUrl}
+    payload: {username, id, profilepic}
   }
 }
 
 export default function (state = initialState, action) {
   switch (action.type){
     case LOGIN_USER:
-      return {...state, username: action.payload.username, id: action.payload.id, profilePicUrl: action.payload.profilePicUrl}
+      return {...state, username: action.payload.username, id: action.payload.id, profilepic: action.payload.profilepic}
     default:
       return initialState
   }

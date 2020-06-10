@@ -37,11 +37,12 @@ module.exports = {
         if (authenticated) {
           req.session.user = {
             userId: user[0].user_id,
-            username: user[0].username
+            username: user[0].username,
+            profilepic: user[0].profilepic
           }
           res.status(200).send(req.session.user)
         } else {
-            res.status(403).send('Incorrect login credentials')
+          res.status(403).send('Incorrect login credentials')
         }
     }
   },

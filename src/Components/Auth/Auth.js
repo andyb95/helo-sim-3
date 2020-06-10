@@ -9,7 +9,8 @@ class Auth extends Component {
     super()
     this.state={
       username: '',
-      password: ''
+      password: '',
+      profilepic: ''
     }
   }
 
@@ -24,6 +25,7 @@ class Auth extends Component {
     const {username, password} = this.state
     axios.post('/auth/register', {username, password})
     .then( res => {
+      this.props.loginUser(res.data.username, res.data.userId, res.data.profilepic)
       this.props.history.push('/dashboard')
     })
     .catch(err => {
@@ -37,7 +39,7 @@ class Auth extends Component {
     axios.post('/auth/login', {username, password})
     .then( res => {
       debugger
-      this.props.loginUser(res.data)
+      this.props.loginUser(res.data.username, res.data.userId, res.data.profilepic)
       this.props.history.push('/dashboard')
     })
     .catch(err => {
