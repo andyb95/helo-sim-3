@@ -18,7 +18,7 @@ export function loginUser(username, id, profilePicUrl){
 export default function (state = initialState, action) {
   switch (action.type){
     case LOGIN_USER:
-      return {...state, username: action.payload.data, id: action.payload.data, profilePicUrl: action.payload.data}
+      return {...state, username: action.payload.username, id: action.payload.id, profilePicUrl: action.payload.profilePicUrl}
     default:
       return initialState
   }

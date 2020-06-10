@@ -3,7 +3,7 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {loginUser} from '../../ducks/reducer'
 
-export default class Auth extends Component {
+class Auth extends Component {
 
   constructor(){
     super()
@@ -36,6 +36,8 @@ export default class Auth extends Component {
     const {username, password} = this.state
     axios.post('/auth/login', {username, password})
     .then( res => {
+      debugger
+      this.props.loginUser(res.data)
       this.props.history.push('/dashboard')
     })
     .catch(err => {
@@ -70,3 +72,5 @@ export default class Auth extends Component {
   }
 }
 const mapStateToProps = reduxState => reduxState
+
+export default connect(mapStateToProps, {loginUser})(Auth)
