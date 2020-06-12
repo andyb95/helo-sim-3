@@ -22,6 +22,8 @@ app.use(
 app.post('/auth/register', ctrl.register)
 app.post('/auth/login', ctrl.login)
 
+// app.get('/dash/posts', ctrl.getPosts)
+
 massive({
   connectionString: CONNECTION_STRING,
   ssl: {rejectUnauthorized: false}

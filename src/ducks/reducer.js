@@ -1,25 +1,30 @@
-
 const initialState = {
-  username: '',
-  id: '',
-  profilepic: ''
-}
+  username: "",
+  id: "",
+  profile_pic: "",
+};
 
-const LOGIN_USER = 'LOGIN_USER'
+const LOGIN_USER = "LOGIN_USER";
 
-export function loginUser(username, id, profilepic){
+export function loginUser(username, id, profile_pic, first_name, last_name, birthday) {
   return {
     type: LOGIN_USER,
-    payload: {username, id, profilepic}
-  }
+    payload: { username, id, profile_pic, first_name, last_name, birthday },
+  };
 }
 
 export default function (state = initialState, action) {
-  switch (action.type){
+  switch (action.type) {
     case LOGIN_USER:
-      return {...state, username: action.payload.username, id: action.payload.id, profilepic: action.payload.profilepic}
+      return {
+        username: action.payload.username,
+        id: action.payload.id,
+        profile_pic: action.payload.profile_pic,
+        first_name: action.payload.first_name,
+        last_name: action.payload.last_name,
+        birthday: action.payload.birthday,
+      };
     default:
-      return initialState
+      return initialState;
   }
 }
-
