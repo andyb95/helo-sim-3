@@ -249,10 +249,10 @@ Now set up Dashboard to hit the endpoint you just wrote.
   * Write the `mapStateToProps` function at the bottom of the file. Pull the user id off of Redux State.
   * Invoke the `connect` method, passing in the `mapStateToProps` function and then invoking it with the component name as an argument.
 * Write a method that sends an `axios` request to the endpoint you just wrote.
-  * No matter the combination of queries, the request should send the user id from Redux state as a parameter.
+  <!-- * No matter the combination of queries, the request should send the user id from Redux state as a parameter.
   * If the user has entered a search term into the input box, send that string as a query.
   * If the 'My Posts' checkbox has been selected, send a userposts query with the value of true. 
-  * Once the request comes back, update state with the list of posts.
+  * Once the request comes back, update state with the list of posts. -->
 * Use a lifecycle hook to fire this method when the Dashboard first loads.
 * Write a method to reset the search. This method will hit the same endpoint.
   * Send the user id as a parameter.

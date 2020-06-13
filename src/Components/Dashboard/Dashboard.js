@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import Post from '../Post/Post'
 import {connect} from 'react-redux'
 import {getPosts} from '../../ducks/reducer'
 
@@ -17,32 +18,39 @@ class Dashboard extends Component {
   //   this.getPosts()
   // }
 
-  handleSearch(val){
-    this.setState({search: val})
+  handleSearch = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   getPosts = async (e) => {
+    e.preventDefault()
     const {search} = this.state
     const userPosts = await axios
       .get(`/dash/getPosts/${search}`)
       const {first_name, last_name, profile_pic, title, date, text} = userPosts.data
       this.props.getPosts(first_name, last_name, profile_pic, title, date, text)
       this.setState({
-        posts: userPosts.data
+        posts: [...this.state.posts, userPosts.data]
       })
     console.log('post', this.state)
   }
 
   render(){
+    const {search} = this.state
     return(
       <div>Dashboard.js
 
         <input 
           type= 'search'
-          onChange = {(e) => this.handleSearch(e.target.value)}
+          placeholder = 'first name of user'
+          name="search"
+          value={search}
+          onChange = {(e) => this.handleSearch(e)}
         />
 
-        <button onClick = {this.getPosts()}>Search</button>
+        <button onClick = {(e) => this.getPosts(e)}>Search</button>
 
         <button >Reset</button>
 
@@ -52,7 +60,7 @@ class Dashboard extends Component {
               // Make sure to store the value in state.
               // The value should be true intially.
         />
-
+        <Post />
       </div>
     )
   }
