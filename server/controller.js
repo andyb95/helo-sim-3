@@ -42,7 +42,7 @@ module.exports = {
             profile_pic: user[0].profile_pic,
             birthday: user[0].birthday
           }
-          console.log(req.session.user)
+          // console.log(req.session.user)
           res.status(200).send(req.session.user)
         } else {
           res.status(403).send('Incorrect login credentials')
@@ -50,28 +50,25 @@ module.exports = {
     }
   },
 
-  // getPosts: async (req, res) => {
-  //   const db = req.app.get('db')
-  //   const {userposts, search} = req.body
+  getPosts: async (req, res) => {
+    const db = req.app.get('db')
+    const {search} = req.params
 
-  //   const userposts = await db.get_post(search)
-  //   if (userposts[0]){
-  //     req.session.userposts = {
-  //       title: userposts[0].title,
-  //       text: userposts[0].text,
-  //       date: userposts[0].date,
-  //       first_name: userposts[0].first_name,
-  //       last_name: userposts[0].last_name,
-  //       profile_pic: userposts[0].profile_pic
-  //     }
-  //     res.status(200).send(req.session.user)
-  //   } else {
-  //     res.status(403).send("Couldn't find posts")
-  //   }
-  //   // else {
-
-  //   //   }
-  // },
+    const userposts = await db.get_post(search)
+      if (userposts.length){
+        req.session.userposts = {
+          first_name: userposts[0].first_name,
+          last_name: userposts[0].last_name,
+          profile_pic: userposts[0].profile_pic,
+          title: userposts[0].title,
+          date: userposts[0].date,
+          text: userposts[0].text,
+        }
+        res.status(200).send(req.session.userposts)
+      } else {
+          res.sendStatus(404)
+        }
+  },
 
 
 }

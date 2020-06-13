@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import './Nav.css'
 
 class Nav extends Component {
 
-  constructor(props){
-    super(props)
-    // this.state = {
-    //   isLoggedIn: false
-    // }
-  }
+  // constructor(props){
+  //   super(props)
+  //   // this.state = {
+  //   //   isLoggedIn: false
+  //   // }
+  // }
 
   // logOut(){
   //   this.setState({
@@ -19,7 +20,6 @@ class Nav extends Component {
 
   render(){
     const {username, profile_pic} = this.props
-    console.log(this.props)
     return(
       <div>Nav.js
         {/* {!this.state.isLoggedIn ? (
@@ -30,6 +30,7 @@ class Nav extends Component {
           // <p>{username}</p>
         )} */}
         <img 
+          className= 'profile_pic'
           src = {profile_pic} 
           alt = "profile pic"
           />

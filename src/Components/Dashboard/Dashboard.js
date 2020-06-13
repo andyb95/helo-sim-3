@@ -1,18 +1,36 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import {connect} from 'react-redux'
+import {getPosts} from '../../ducks/reducer'
 
 class Dashboard extends Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       posts: [],
       search: ''
     }
   }
 
+  // componentDidMount(){
+  //   this.getPosts()
+  // }
+
   handleSearch(val){
     this.setState({search: val})
+  }
+
+  getPosts = async (e) => {
+    const {search} = this.state
+    const userPosts = await axios
+      .get(`/dash/getPosts/${search}`)
+      const {first_name, last_name, profile_pic, title, date, text} = userPosts.data
+      this.props.getPosts(first_name, last_name, profile_pic, title, date, text)
+      this.setState({
+        posts: userPosts.data
+      })
+    console.log('post', this.state)
   }
 
   render(){
@@ -21,10 +39,10 @@ class Dashboard extends Component {
 
         <input 
           type= 'search'
-        //Set up an input box for the search functionality. Make sure to store the value in state.
+          onChange = {(e) => this.handleSearch(e.target.value)}
         />
 
-        <button >Search</button>
+        <button onClick = {this.getPosts()}>Search</button>
 
         <button >Reset</button>
 
@@ -40,6 +58,8 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = reduxState => reduxState
-
-export default connect(mapStateToProps)(Dashboard)
+const mapStateToProps = reduxState => {
+  const {search} = reduxState
+  return {search}
+}
+export default connect(mapStateToProps, {getPosts})(Dashboard)

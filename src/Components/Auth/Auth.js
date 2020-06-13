@@ -11,7 +11,7 @@ class Auth extends Component {
       password: "",
       first_name: "",
       last_name: "",
-      // profile_pic: "",
+      profile_pic: "",
       birthday: ""
     };
   }
@@ -43,20 +43,6 @@ class Auth extends Component {
       .post("/auth/login", { username, password })
       const { id, profile_pic, first_name, last_name, birthday} = loggedInUser.data
       this.props.loginUser(username, id, profile_pic, first_name, last_name, birthday)
-      console.log(this.props)
-        // this.props.loginUser(
-        //   res.data.user_id,
-        //   res.data.first_name,
-        //   res.data.last_name,
-        //   res.data.profile_pic,
-        //   res.data.birthday
-        // );
-        // this.props.history.push("/dashboard");
-        // console.log(this.state); //set state for mapStateToProps???
-      
-      // .catch((err) => {
-      //   alert("Could not log in");
-      // });
   };
 
   render() {

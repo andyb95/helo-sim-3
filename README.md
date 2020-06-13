@@ -234,12 +234,12 @@ Then write the GET endpoint to retreive all posts. This endpoint is going to acc
 * The endpoint should have a parameter for the user id.
 * If userposts is true AND there is a search string, the endpoint should respond with all the posts where...
   * The title contains the search string.
-* If userposts is false AND there is no search string, the endpoint should respond with all the posts where...
+<!-- * If userposts is false AND there is no search string, the endpoint should respond with all the posts where...
   * The current user is NOT the author.
 * If userposts is false AND there is a search string, the endpoint should respond with all the posts where...
   * The current user is NOT the author.
   * The title contains the search string.
-* If userposts is true AND there is no search string, the endpoint should respond with all the posts.
+* If userposts is true AND there is no search string, the endpoint should respond with all the posts. -->
 
 ## Step 3
 Now set up Dashboard to hit the endpoint you just wrote.
