@@ -22,7 +22,10 @@ app.use(
 app.post('/auth/register', ctrl.register)
 app.post('/auth/login', ctrl.login)
 
+app.get('/dash/getAll', ctrl.getAll)
 app.get('/dash/getPosts/:search', ctrl.getPosts)
+
+app.post('/form/newPost/:user_id', ctrl.newPost)
 
 massive({
   connectionString: CONNECTION_STRING,

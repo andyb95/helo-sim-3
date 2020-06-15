@@ -24,21 +24,20 @@ class Dashboard extends Component {
     })
   }
 
-  getPosts = async (e) => {
-    e.preventDefault()
+  getPosts = async () => {
     const {search} = this.state
     const userPosts = await axios
       .get(`/dash/getPosts/${search}`)
-      const {first_name, last_name, profile_pic, title, date, text} = userPosts.data
-      this.props.getPosts(first_name, last_name, profile_pic, title, date, text)
+      const {first_name, last_name, profile_pic, title, date, text, post_img} = userPosts.data
+      this.props.getPosts(first_name, last_name, profile_pic, title, date, text, post_img)
       this.setState({
         posts: [...this.state.posts, userPosts.data]
       })
-    console.log('post', this.state)
   }
 
   render(){
     const {search} = this.state
+    // this.getPosts()
     return(
       <div>Dashboard.js
 

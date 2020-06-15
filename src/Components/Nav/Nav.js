@@ -35,10 +35,10 @@ class Nav extends Component {
           alt = "profile pic"
           />
           <p>{username}</p>
-        <Link to='/dashboard'>Home</Link>
-        <Link to='/new'>New Post</Link>
+        <Link to='/dashboard'> Home </Link>
+        <Link to='/new'> New Post </Link>
         {/* <button onClick = {this.logOut()}> */}
-          <Link to='/'>Logout</Link>
+          <Link to='/'> Logout </Link>
         {/* </button> */}
       </div>
     )

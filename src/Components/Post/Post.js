@@ -3,13 +3,15 @@ import {connect} from 'react-redux'
 
 class Post extends Component {
 
-  constructor(props){
-    super(props)
+  // constructor(props){
+  //   super(props)
     
-  }
+  // }
+
 
   render(){
-    const {first_name, last_name, profile_pic, title, date, text} = this.props
+    const {first_name, last_name, profile_pic, title, date, text, post_img} = this.props
+
     return(
       <div>
         <img 
@@ -20,15 +22,20 @@ class Post extends Component {
         <p>{first_name} {last_name}</p>
         <h1>{title}</h1>
         <h2>{date}</h2>
-        <h3>{text}</h3>
+        <img
+        className = 'post_img'
+        src = {post_img}
+        alt = 'content pic'
+        />
+        <h3>{text}</h3> 
       </div>
     )
   }
 }
 
 const mapStateToProps = reduxState => {
-  const {first_name, last_name, profile_pic, title, date, text} = reduxState
-  return {first_name, last_name, profile_pic, title, date, text}
+  const {first_name, last_name, profile_pic, title, date, text, post_img} = reduxState
+  return {first_name, last_name, profile_pic, title, date, text, post_img}
   
 } 
 

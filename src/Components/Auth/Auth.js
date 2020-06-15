@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {Link} from 'react-router-dom'
 import { connect } from "react-redux";
 import { loginUser } from "../../ducks/reducer";
 
 class Auth extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      user_id: "",
       username: "",
       password: "",
-      first_name: "",
-      last_name: "",
-      profile_pic: "",
-      birthday: ""
+      // first_name: "",
+      // last_name: "",
+      // profile_pic: "",
+      // birthday: ""
     };
   }
 
@@ -41,8 +43,9 @@ class Auth extends Component {
     const {username, password} = this.state
     const loggedInUser= await axios
       .post("/auth/login", { username, password })
-      const { id, profile_pic, first_name, last_name, birthday} = loggedInUser.data
-      this.props.loginUser(username, id, profile_pic, first_name, last_name, birthday)
+      const { user_id, profile_pic, first_name, last_name, birthday} = loggedInUser.data
+      this.props.loginUser(username, user_id, profile_pic, first_name, last_name, birthday)
+    console.log(loggedInUser)
   };
 
   render() {
@@ -64,8 +67,13 @@ class Auth extends Component {
           value={password}
           onChange={(e) => this.changeHandler(e)}
         />
-        <button onClick={(e) => this.loginUser(e)}>Login</button>
-        <button onClick={(e) => this.registerUser(e)}>Register</button>
+        
+        <button onClick={(e) => this.loginUser(e)}>
+          <Link to='/dashboard'>Login</Link>
+        </button>
+        <button onClick={(e) => this.registerUser(e)}>        
+          <Link to='/dashboard'>Register</Link>
+        </button>
       </div>
     );
   }

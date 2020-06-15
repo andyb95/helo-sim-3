@@ -18,7 +18,7 @@ module.exports = {
     const newUser = await db.register_user([username, hash])
 
     req.session.user = {
-      userId: newUser[0].user_id,
+      user_id: newUser[0].user_id,
       username: newUser[0].username
     }
 
@@ -50,6 +50,18 @@ module.exports = {
     }
   },
 
+  getAll: async (req, res) => {
+    const db = req.app.get('db')
+
+    const posts = await db.get_all_posts()
+    if(posts.length){
+      console.log(posts)
+      res.status(200).send(posts)
+    } else {
+      res.sendStatus(404)
+    }
+  },
+
   getPosts: async (req, res) => {
     const db = req.app.get('db')
     const {search} = req.params
@@ -63,11 +75,32 @@ module.exports = {
           title: userposts[0].title,
           date: userposts[0].date,
           text: userposts[0].text,
+          post_img: userposts[0].post_img,
         }
         res.status(200).send(req.session.userposts)
       } else {
           res.sendStatus(404)
         }
+  },
+
+  newPost: async(req, res) => {
+    const db = req.app.get('db')
+    const {user_id} = req.params
+    const {title, text, date, post_img} = req.body
+    
+    const newPost = await db.new_post(user_id, title, text, date, post_img)
+      if(newPost[0]){
+        req.session.newPost = {
+          user_id: newPost[0].user_id,
+          title: newPost[0].title,
+          text: newPost[0].text,
+          date: newPost[0].date,
+          post_img: newPost[0].post_img,
+        }
+        res.status(200).send(req.session.newPost)
+      } else {
+        res.sendStatus(404)
+      }
   },
 
 

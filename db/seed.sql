@@ -29,6 +29,7 @@ create table user_posts(
 id serial primary key,
 user_id integer references users(user_id),
 title varchar(100),
+post_img varchar(3000)
 text varchar(3000),
 date date
 );
@@ -37,6 +38,7 @@ create table group_posts(
 id serial primary key,
 group_id int references groups(group_id),
 title varchar(100),
+post_img varchar(3000)
 text varchar(3000),
 date date
 );
